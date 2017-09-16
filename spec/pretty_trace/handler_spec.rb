@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe Handler do
-  subject { described_class.instance }
-  
   let(:exception) { raise 'hell' }
 
   describe '#trace_point' do
+    subject { described_class.instance.trace_point }
+
     it "returns a TracePoint object" do
-      expect(subject.trace_point).to be_a TracePoint
+      expect(subject).to be_a TracePoint
     end
 
     context "when disabled" do
       it "raises unaltered exceptions" do
-        subject.trace_point.disable do
+        subject.disable do
           begin
             exception
           rescue Exception => e
@@ -26,7 +26,7 @@ describe Handler do
 
     context "when enabled" do
       it "formats the exception's backtrace" do
-        subject.trace_point.enable do
+        subject.enable do
           begin
             exception
           rescue Exception => e
