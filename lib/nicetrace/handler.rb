@@ -1,30 +1,42 @@
+require 'colsole'
+
 module Nicetrace
-  class Handler
-    extend Colsole
+  extend Colsole
 
-    HANDLER = TracePoint.new :raise do |tp|
-      e = tp.raised_exception
+  CONFIG = {
+    filter: []
+  }
 
-      nicetrace = e.backtrace
+  HANDLER = TracePoint.new :raise do |tp|
+    e = tp.raised_exception
 
-      nicetrace.reject! do |trace|
-        trace =~ /(bin\/(run|ruby_executable_hooks)|lib\/runfile)/
-      end
+    nicetrace = e.backtrace
+    filter = CONFIG[:filter]
 
-      nicetrace.map! do |item|
-        if item =~ /([^\/]+\/)?([\w\d_\.]+):(\d+):in `(.+)'/
-          dir, file, line, place = $1, $2, $3, $4
-          item = "line !bldgrn!#{line.to_s.ljust 4}!txtrst! in !txtcyn!#{dir}!bldpur!#{file}!txtrst! > !txtblu!#{place}"
-        end
-        item
-      end
-
-      nicetrace.each do |line|
-        say line
-      end
-
-      say "\n!undgrn!#{e.class}"
-      say "!txtred!#{e.message}"
+    filter.each do |expression|
+      nicetrace.reject! { |trace| trace =~ expression }
     end
+
+    nicetrace.map! do |item|
+      if item =~ /([^\/]+\/)?([\w\d_\.]+):(\d+):in `(.+)'/
+        dir, file, line, place = $1, $2, $3, $4
+        item = "line !bldgrn!#{line.to_s.ljust 4}!txtrst! in !txtcyn!#{dir}!bldpur!#{file}!txtrst! > !txtblu!#{place}"
+      end
+      item
+    end
+
+    nicetrace.each do |line|
+      say line
+    end
+
+    say "\n!undgrn!#{e.class}"
+    say "!txtred!#{e.message}\n"
+    
+    HANDLER.disable
+    exit 1
+  end
+
+  def self.filter=(filter)
+    CONFIG[:filter] = filter.is_a?(Array) ? filter : [filter]
   end
 end

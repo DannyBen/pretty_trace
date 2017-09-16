@@ -10,7 +10,8 @@ version Nicetrace::VERSION
 RunfileTasks::RubyGems.all 'nicetrace'
 RunfileTasks::Testing.rspec
 
-Nicetrace.enable
+# Nicetrace.enable
+Nicetrace.filter = /(ruby_executable_hooks|bin\/run|lib\/runfile)/
 
 action :debug do
   FileUtils.rm 'no_such.file'
