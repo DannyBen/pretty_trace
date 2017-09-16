@@ -19,8 +19,9 @@ module PrettyTrace
       pretty_trace = pretty_trace[config.range] if config.range
 
       pretty_trace.map! do |item|
-        if item =~ /([^\/]+\/)?([\w\d_\.]+):(\d+):in `(.+)'/
-          dir, file, line, place = $1, $2, $3, $4
+        if item =~ /(.+):(\d+):in `(.+)'(.*)/
+          file, line, method, message = $1, $2, $3, $4
+          dir = 'soon'
           item = "line %{green}#{line.to_s.ljust 4}%{reset} in %{cyan}#{dir}%{magenta}#{file}%{reset} > %{blue}#{place}%{reset}" % colors
         end
         item
