@@ -1,24 +1,15 @@
 require 'ostruct'
 
 module PrettyTrace
-  class PrettyException
-    attr_reader :source, :config
-
-    def initialize(source, opts=nil)
-      @source = source
-      @config = opts ? Config.from_hash(opts) : Config.instance
-    end
-
-    def messages
-      pretty_trace = backtrace
-
-      config.filter.each do |expression|
-        pretty_trace.reject! { |trace| trace =~ expression }
+  class Formatter
+    def pretty_trace(backtrace)
+      filter.each do |expression|
+        backtrace.reject! { |trace| trace =~ expression }
       end
 
-      pretty_trace = pretty_trace[config.range] if config.range
+      backtrace = pretty_trace[range] if range
 
-      pretty_trace.map! do |item|
+      backtrace.map! do |item|
         if item =~ /(.+):(\d+):in `(.+)'/
           file, line, method = $1, $2, $3
           dir = File.dirname(file).split('/').last
@@ -30,25 +21,18 @@ module PrettyTrace
         item
       end
 
-      pretty_trace
+      backtrace
+    end
 
+    def filter
+    end
+
+    def range
     end
 
     private
 
-    def backtrace
-      if source.respond_to?(:backtrace)
-        source.backtrace.respond_to?(:[]) ? source.backtrace : []
-      else
-        source
-      end
-    end
-
     def colors
-      @colors ||= colors!
-    end
-
-    def colors!
       {
         reset:  "\e[0m",
         black:  "\e[30m",
