@@ -6,12 +6,14 @@ This forces any of your Ruby scripts to show a pretty backtrace.
 Install
 --------------------------------------------------
 
-    $ gem install pretty_trace
+```
+$ gem install pretty_trace
+```
 
 Example
 --------------------------------------------------
 
-1. Create this ruby file:
+Create this ruby file:
 
 ```ruby
 # test.rb
@@ -21,10 +23,6 @@ FileUtils.rm 'no_such_file'
 ```
 
 2. Run it:
-
-    $ ruby test.rb
-
-3. Get a pretty exception
 
 ![screenshot](/screenshot.png)
 
