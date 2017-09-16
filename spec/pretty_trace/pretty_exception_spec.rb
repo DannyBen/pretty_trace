@@ -9,7 +9,7 @@ describe PrettyException do
     end
   }
   
-  subject { PrettyException.new exception }
+  subject { described_class.new exception }
 
   describe '#messages' do
     it "returns colsole-formatted array of messages" do
@@ -18,7 +18,7 @@ describe PrettyException do
   end
 
   context "with a backtrace argument" do
-    subject { PrettyException.new backtrace }
+    subject { described_class.new backtrace }
 
     describe '#messages' do
       it "returns colsole-formatted array of messages" do
@@ -27,11 +27,11 @@ describe PrettyException do
     end
   end
 
-  context "with the optional config argument" do
-    let(:config) { {range: 0..0} }
-    subject { PrettyException.new backtrace, config }
+  context "with the optional opts argument" do
+    let(:opts) { {range: 0..0} }
+    subject { described_class.new backtrace, opts }
 
-    it "uses the provided config" do
+    it "obeys the provided options" do
       expect(subject.messages.count).to eq 1
     end
   end

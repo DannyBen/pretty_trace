@@ -13,8 +13,8 @@ module PrettyTrace
 
     def self.from_hash(opts)
       instance.tap do |i|
-        i.filter << opts[:filter] if opts[:filter]
-        i.ignore << opts[:ignore] if opts[:ignore]
+        i.filter = opts[:filter] if opts[:filter]
+        i.ignore = opts[:ignore] if opts[:ignore]
         i.range = opts[:range] if opts[:range]
       end
     end
