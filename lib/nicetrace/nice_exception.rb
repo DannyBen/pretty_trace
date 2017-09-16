@@ -1,13 +1,6 @@
 module Nicetrace
   class NiceException
-    include Colsole
-    
     attr_reader :exception, :filter
-
-    def self.show(exception, filter=[])
-      exception = new exception, filter
-      exception.messages.each { |message| say message }
-    end
 
     def initialize(exception, filter=[])
       @exception = exception
