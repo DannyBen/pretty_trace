@@ -1,22 +1,17 @@
 module PrettyTrace
   def self.enable
-    Handler.instance.trace_point.enable unless ENV['NICETRACE'] == 'off'
+    Handler.instance.trace_point.enable unless ENV['PRETTY_TRACE'] == 'off'
+  end
+
+  def self.disable
+    Handler.instance.trace_point.disable
   end
 
   def self.filter(filter)
-    config.filter << filter
+    if filter.is_a? Array
+      Handler.instance.options[:filter] += filter
+    else
+      Handler.instance.options[:filter] << filter
+    end
   end
-
-  def self.range(range)
-    config.range = range
-  end
-
-  def self.ignore(exception_class)
-    config.ignore << exception_class
-  end
-
-  def self.config
-    Config.instance
-  end
-
 end

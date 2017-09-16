@@ -2,12 +2,13 @@ require 'ostruct'
 
 module PrettyTrace
   class Formatter
-    def pretty_trace(backtrace)
+    def self.pretty_trace(backtrace, opts={})
+      filter = opts[:filter] || []
+      filter = [filter] unless filter.is_a? Array
+
       filter.each do |expression|
         backtrace.reject! { |trace| trace =~ expression }
       end
-
-      backtrace = pretty_trace[range] if range
 
       backtrace.map! do |item|
         if item =~ /(.+):(\d+):in `(.+)'/
@@ -24,15 +25,9 @@ module PrettyTrace
       backtrace
     end
 
-    def filter
-    end
-
-    def range
-    end
-
     private
 
-    def colors
+    def self.colors
       {
         reset:  "\e[0m",
         black:  "\e[30m",
