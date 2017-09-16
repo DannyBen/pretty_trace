@@ -53,6 +53,8 @@ your script:
 require 'pretty_trace/enable'
 ```
 
+From this point on, any exception will be formatted.
+
 If you prefer to enable/disable the formatted backtrace manually, use 
 `PrettyTrace.enable` and `PrettyTrace.disable`
 
