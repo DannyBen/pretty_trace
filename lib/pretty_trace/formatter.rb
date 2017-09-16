@@ -25,8 +25,6 @@ module PrettyTrace
       backtrace
     end
 
-    private
-
     def self.colors
       {
         reset:  "\e[0m",
