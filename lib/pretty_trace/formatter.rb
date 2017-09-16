@@ -1,5 +1,3 @@
-require 'ostruct'
-
 module PrettyTrace
   class Formatter
     def self.pretty_trace(backtrace, opts={})
