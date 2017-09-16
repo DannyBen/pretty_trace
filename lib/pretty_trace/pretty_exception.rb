@@ -12,9 +12,9 @@ module PrettyTrace
     def messages
       pretty_trace = backtrace
 
-      # config.filter.each do |expression|
-      #   pretty_trace.reject! { |trace| trace =~ expression }
-      # end
+      config.filter.each do |expression|
+        pretty_trace.reject! { |trace| trace =~ expression }
+      end
 
       pretty_trace = pretty_trace[config.range] if config.range
 
