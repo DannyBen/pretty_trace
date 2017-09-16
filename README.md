@@ -8,7 +8,10 @@ Pretty Trace - Pretty Errors and Backtrace
 
 ---
 
-This gem makes your Ruby scripts show a pretty backtrace.
+Make your Ruby backtrace pretty again. Just require `pretty_trace/enable` 
+in your ruby script, and errors will become clearer and more readable.
+
+---
 
 Install
 --------------------------------------------------
@@ -34,6 +37,9 @@ FileUtils.rm 'no_such_file'
 ![screenshot](/screenshot.png)
 
 
+Usage
+--------------------------------------------------
 
+Soon
 
 
