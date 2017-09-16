@@ -11,10 +11,11 @@ RunfileTasks::Testing.rspec
 
 # Nicetrace.enable
 PrettyTrace.filter /(ruby_executable_hooks|bin\/run|lib\/runfile)/
-PrettyTrace.range -3..-1
-PrettyTrace.ignore Docopt::Exit
+# PrettyTrace.range -3..-1
+# PrettyTrace.ignore Docopt::Exit
 
 action :debug do
+  # PrettyTrace::PrettyException.new []
   FileUtils.rm 'no_such.file'
 end
 

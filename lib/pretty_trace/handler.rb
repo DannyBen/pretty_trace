@@ -1,9 +1,7 @@
-require 'colsole'
 require 'singleton'
 
 module PrettyTrace
   class Handler
-    extend Colsole
     include Singleton
 
     def trace_point
@@ -17,10 +15,7 @@ module PrettyTrace
         raised_exception = tp.raised_exception
         unless config.ignore.include? raised_exception.class
           exception = PrettyException.new raised_exception
-          exception.messages.each { |line| say line }
-
-          trace_point.disable
-          exit 1
+          raised_exception.set_backtrace exception.messages
         end
       end
     end

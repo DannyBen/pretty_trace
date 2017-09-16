@@ -7,7 +7,7 @@ module PrettyTrace
 
     def initialize
       self.filter = []
-      self.ignore = [SystemExit]
+      self.ignore = []
       self.range = nil
     end
 

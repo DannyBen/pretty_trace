@@ -21,16 +21,9 @@ module PrettyTrace
       pretty_trace.map! do |item|
         if item =~ /([^\/]+\/)?([\w\d_\.]+):(\d+):in `(.+)'/
           dir, file, line, place = $1, $2, $3, $4
-          item = "line !bldgrn!#{line.to_s.ljust 4}!txtrst! in !txtcyn!#{dir}!bldpur!#{file}!txtrst! > !txtblu!#{place}"
+          item = "line %{green}#{line.to_s.ljust 4}%{reset} in %{cyan}#{dir}%{magenta}#{file}%{reset} > %{blue}#{place}%{reset}" % colors
         end
         item
-      end
-
-      if source.respond_to?(:message)
-        pretty_trace << "\n" 
-        pretty_trace << "!undgrn!#{source.class}" 
-        pretty_trace << "!txtred!#{source.message}"
-        pretty_trace << "\n" 
       end
 
       pretty_trace
@@ -44,6 +37,25 @@ module PrettyTrace
       else
         source
       end
+    end
+
+    def colors
+      @colors ||= colors!
+    end
+
+    def colors!
+      esc = 27.chr
+      {
+        reset:  "#{esc}[0m",
+        black:  "#{esc}[30m",
+        red:    "#{esc}[31m",
+        green:  "#{esc}[32m",
+        yellow: "#{esc}[33m",
+        blue:   "#{esc}[34m",
+        magenta:"#{esc}[35m",
+        cyan:   "#{esc}[36m",
+        white:  "#{esc}[37m",
+      }
     end
   end
 end
