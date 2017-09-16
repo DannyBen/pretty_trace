@@ -3,12 +3,10 @@ require 'nicetrace/handler'
 
 module Nicetrace
   def self.enable
-    @enabled = true
-    Handler.instance.trace.enable
+    HANDLER.enable
   end
 
   def self.disable
-    Handler.instance.trace.disable
-    @enabled = false
+    HANDLER.enable
   end
 end
