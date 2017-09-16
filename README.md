@@ -13,7 +13,7 @@ $ gem install pretty_trace
 Example
 --------------------------------------------------
 
-Create this ruby file:
+### Create this ruby file:
 
 ```ruby
 # test.rb
@@ -22,7 +22,7 @@ require "fileutils"
 FileUtils.rm 'no_such_file'
 ```
 
-2. Run it:
+### Run it:
 
 ![screenshot](/screenshot.png)
 
