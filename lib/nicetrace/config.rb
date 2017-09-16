@@ -1,3 +1,5 @@
+require 'singleton'
+
 module Nicetrace
   class Config
     include Singleton

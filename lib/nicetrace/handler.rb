@@ -1,4 +1,5 @@
 require 'colsole'
+require 'singleton'
 
 module Nicetrace
   class Handler
