@@ -13,8 +13,8 @@ module PrettyTrace
           file, line, method = $1, $2, $3
           dir = File.dirname(file).split('/').last
           dir = dir == '.' ? '' : "#{dir}/"
-
           file = File.basename file
+
           item = "line %{green}#{line.to_s.ljust 4}%{reset} in %{cyan}#{dir}%{magenta}#{file}%{reset} > %{blue}#{method}%{reset}" % colors
         end
         item
