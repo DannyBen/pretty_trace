@@ -20,6 +20,12 @@ Install
 $ gem install pretty_trace
 ```
 
+Or with bundler:
+
+```
+$ gem 'pretty_trace', require: 'pretty_trace/enable'
+```
+
 Example
 --------------------------------------------------
 
