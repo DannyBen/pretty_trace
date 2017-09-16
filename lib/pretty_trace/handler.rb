@@ -9,7 +9,11 @@ module PrettyTrace
     end
 
     def options
-      @options ||= { filter: [] }
+      @options ||= default_options
+    end
+
+    def options=(new_options)
+      @options = new_options
     end
 
     private
@@ -21,6 +25,10 @@ module PrettyTrace
         pretty_trace = Formatter.pretty_trace backtrace, options
         exception.set_backtrace pretty_trace
       end
+    end
+
+    def default_options
+      { filter: [] }
     end
   end
 end
