@@ -1,0 +1,3 @@
+module Nicetrace
+  VERSION = "0.0.1"
+end

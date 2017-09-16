@@ -1,0 +1,17 @@
+require "runfile-tasks"
+require 'fileutils'
+
+require_relative 'lib/nicetrace/enable'
+
+title   "Nicetrace Developer Toolbelt"
+summary "Runfile tasks for building the Nicetrace gem"
+version Nicetrace::VERSION
+
+RunfileTasks::RubyGems.all 'nicetrace'
+RunfileTasks::Testing.rspec
+
+Nicetrace.enable
+
+action :debug do
+  FileUtils.rm 'no_such.file'
+end

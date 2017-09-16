@@ -1,0 +1,2 @@
+require 'nicetrace'
+Nicetrace.enable
