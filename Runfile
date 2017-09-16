@@ -1,7 +1,8 @@
 require "runfile-tasks"
 require 'fileutils'
+require 'nicetrace'
+require 'nicetrace/rescue'
 
-require_relative 'lib/nicetrace/enable'
 
 title   "Nicetrace Developer Toolbelt"
 summary "Runfile tasks for building the Nicetrace gem"
@@ -15,4 +16,10 @@ Nicetrace.filter = /(ruby_executable_hooks|bin\/run|lib\/runfile)/
 
 action :debug do
   FileUtils.rm 'no_such.file'
+end
+
+action :rescue do
+  rescue_nicely Nicetrace.filter do 
+    FileUtils.rm 'no_such.file'
+  end
 end
