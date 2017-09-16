@@ -5,7 +5,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require :default, :development
 
-include Nicetrace
+include PrettyTrace
 
 def fixture(filename, data=nil)
   if data

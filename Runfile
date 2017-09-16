@@ -1,17 +1,18 @@
 require "runfile-tasks"
 require 'fileutils'
-require 'nicetrace/enable'
+require 'pretty_trace/enable'
 
-title   "Nicetrace Developer Toolbelt"
-summary "Runfile tasks for building the Nicetrace gem"
-version Nicetrace::VERSION
+title   "PrettyTrace Developer Toolbelt"
+summary "Runfile tasks for building the PrettyTrace gem"
+version PrettyTrace::VERSION
 
-RunfileTasks::RubyGems.all 'nicetrace'
+RunfileTasks::RubyGems.all 'pretty_trace'
 RunfileTasks::Testing.rspec
 
 # Nicetrace.enable
-# Nicetrace.filter = /(ruby_executable_hooks|bin\/run|lib\/runfile)/
-Nicetrace.filter = 1..-10
+PrettyTrace.filter /(ruby_executable_hooks|bin\/run|lib\/runfile)/
+PrettyTrace.range -3..-1
+PrettyTrace.ignore Docopt::Exit
 
 action :debug do
   FileUtils.rm 'no_such.file'

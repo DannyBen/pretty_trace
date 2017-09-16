@@ -1,3 +1,3 @@
-Nicetrace - Ruby Pretty Backtrace
+Pretty Trace - Pretty Errors and Backtrace
 ==================================================
 

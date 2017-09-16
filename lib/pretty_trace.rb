@@ -1,0 +1,5 @@
+require 'pretty_trace/version'
+require 'pretty_trace/config'
+require 'pretty_trace/handler'
+require 'pretty_trace/pretty_exception'
+require 'pretty_trace/module_methods'

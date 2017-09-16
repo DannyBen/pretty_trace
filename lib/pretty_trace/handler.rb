@@ -1,7 +1,7 @@
 require 'colsole'
 require 'singleton'
 
-module Nicetrace
+module PrettyTrace
   class Handler
     extend Colsole
     include Singleton
@@ -15,13 +15,18 @@ module Nicetrace
     def trace_point!
       TracePoint.new :raise do |tp|
         raised_exception = tp.raised_exception
+        unless config.ignore.include? raised_exception.class
+          exception = PrettyException.new raised_exception
+          exception.messages.each { |line| say line }
 
-        exception = NiceException.new raised_exception
-        exception.messages.each { |line| say line }
-
-        trace_point.disable
-        exit 1
+          trace_point.disable
+          exit 1
+        end
       end
+    end
+
+    def config
+      Config.instance
     end
   end
 end
