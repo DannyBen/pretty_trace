@@ -1,16 +1,21 @@
 module Nicetrace
   class NiceException
-    attr_reader :exception, :filter
+    attr_reader :exception, :config
 
-    def initialize(exception, filter=[])
+    def initialize(exception, config=nil)
       @exception = exception
-      @filter = filter
+      @config = config || Config.instance
     end
 
     def messages
       backtrace = exception.backtrace
 
-      filter.each do |expression|
+      if config.filter.is_a? Range
+        backtrace = backtrace[config.filter]
+        config.filter = []
+      end
+
+      config.filter.each do |expression|
         backtrace.reject! { |trace| trace =~ expression }
       end
 

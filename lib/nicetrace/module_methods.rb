@@ -4,10 +4,15 @@ module Nicetrace
   end
 
   def self.filter=(filter)
-    Handler.instance.config[:filter] = filter.is_a?(Array) ? filter : [filter]
+    config.filter = filter.is_a?(Regexp) ? [filter] : filter
   end
 
   def self.filter
-    Handler.instance.config[:filter]
+    config.filter
   end
+
+  def self.config
+    Config.instance
+  end
+
 end

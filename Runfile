@@ -10,7 +10,8 @@ RunfileTasks::RubyGems.all 'nicetrace'
 RunfileTasks::Testing.rspec
 
 # Nicetrace.enable
-Nicetrace.filter = /(ruby_executable_hooks|bin\/run|lib\/runfile)/
+# Nicetrace.filter = /(ruby_executable_hooks|bin\/run|lib\/runfile)/
+Nicetrace.filter = 1..-10
 
 action :debug do
   FileUtils.rm 'no_such.file'

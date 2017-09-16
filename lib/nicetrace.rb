@@ -1,4 +1,5 @@
 require 'nicetrace/version'
+require 'nicetrace/config'
 require 'nicetrace/handler'
 require 'nicetrace/nice_exception'
 require 'nicetrace/module_methods'
