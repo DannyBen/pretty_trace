@@ -46,6 +46,42 @@ FileUtils.rm 'no_such_file'
 Usage
 --------------------------------------------------
 
-Soon
+The easiest way to use Pretty Trace is to require its activation script in
+your script:
+
+```ruby
+require 'pretty_trace/enable'
+```
+
+If you prefer to enable/disable the formatted backtrace manually, use 
+`PrettyTrace.enable` and `PrettyTrace.disable`
+
+```ruby
+require 'pretty_trace'
+
+# Exceptions here will not be formatted
+
+PrettyTrace.enable
+
+# Exceptions here will be formatted
+
+PrettyTrace.disable
+
+# Exceptions here will not be formatted
+```
 
 
+Configuration
+--------------------------------------------------
+
+To filter out lines in the backtrace, use `PrettyTrace.filter`. This method
+accepts a single regular expression, or an array of regular expressions.
+
+Note that you can call this method several times, and it will aggregate all
+your filters together.
+
+```ruby
+require 'pretty_trace/enable'
+PrettyTrace.filter /rails/
+PrettyTrace.filter [/gem/, /lib/]
+```
