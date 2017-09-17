@@ -87,3 +87,11 @@ require 'pretty_trace/enable'
 PrettyTrace.filter /rails/
 PrettyTrace.filter [/gem/, /lib/]
 ```
+
+If you wish to temporarily disable Pretty Trace (for example, when you need 
+to see the full trace paths), you can set the environment variable 
+`PRETTY_TRACE=off` before running your script:
+
+```
+$ PRETTY_TRACE=off ruby myscript.rb
+```
