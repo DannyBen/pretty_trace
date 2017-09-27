@@ -9,7 +9,7 @@ module PrettyTrace
       end
 
       backtrace.map! do |item|
-        if item =~ /(.+):(\d+):in `(.+)'/
+        if item =~ /(.+):(-?\d+):in `(.+)'/
           file, line, method = $1, $2, $3
           dir = File.dirname(file).split('/').last
           dir = dir == '.' ? '' : "#{dir}/"
