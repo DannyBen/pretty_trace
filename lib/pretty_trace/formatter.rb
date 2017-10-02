@@ -39,8 +39,6 @@ module PrettyTrace
       }
     end
 
-    private
-
     def self.trim(backtrace)
       [backtrace[0], '......    (trimmed)', backtrace[-1]] 
     end
