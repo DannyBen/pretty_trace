@@ -31,4 +31,4 @@ module PrettyTrace
       { filter: [] }
     end
   end
-end
+end;

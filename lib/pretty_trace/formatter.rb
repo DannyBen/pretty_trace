@@ -8,6 +8,8 @@ module PrettyTrace
         backtrace.reject! { |trace| trace =~ expression }
       end
 
+      backtrace = trim backtrace if should_trim? backtrace
+
       backtrace.map! do |item|
         if item =~ /(.+):(-?\d+):in `(.+)'/
           file, line, method = $1, $2, $3
@@ -35,6 +37,15 @@ module PrettyTrace
         cyan:   "\e[36m",
         white:  "\e[37m",
       }
+    end
+
+    def self.trim(backtrace)
+      [backtrace[0], '......    (trimmed)', backtrace[-1]] 
+    end
+
+    def self.should_trim?(backtrace)
+      ENV['PRETTY_TRACE_TRIM'] and ENV['PRETTY_TRACE'] != 'full' and
+        backtrace.size > 3
     end
   end
 end
