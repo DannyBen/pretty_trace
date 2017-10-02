@@ -24,13 +24,13 @@ Or with bundler:
 
 ```
 # Just install, do not activate
-$ gem 'pretty_trace'
+gem 'pretty_trace'
 
-# Install and enable
-$ gem 'pretty_trace', require: 'pretty_trace/enable'
+# Or, install and enable
+gem 'pretty_trace', require: 'pretty_trace/enable'
 
-# Install, enable and enable trimming
-$ gem 'pretty_trace', require: 'pretty_trace/enable-trim'
+# Or, install, enable and enable trimming
+gem 'pretty_trace', require: 'pretty_trace/enable-trim'
 ```
 
 Example
@@ -69,7 +69,7 @@ last line), require this script instead:
 require 'pretty_trace/enable-trim'
 ```
 
-If you prefer to have more control,you can use configure these settings 
+If you prefer to have more control, you can use configure these settings 
 manually:
 
 ```ruby
