@@ -55,8 +55,15 @@ require 'pretty_trace/enable'
 
 From this point on, any exception will be formatted.
 
-If you prefer to enable/disable the formatted backtrace manually, use 
-`PrettyTrace.enable` and `PrettyTrace.disable`
+If you wish to show a trimmed version of the backtrace (only the first and 
+last line), require this script instead:
+
+```ruby
+require 'pretty_trace/enable-trim'
+```
+
+If you prefer to have more control,you can use configure these settings 
+manually:
 
 ```ruby
 require 'pretty_trace'
@@ -70,6 +77,14 @@ PrettyTrace.enable
 PrettyTrace.disable
 
 # Exceptions here will not be formatted
+
+PrettyTrace.trim
+
+# Exceptions here will be trimmed
+
+PrettyTrace.no_trim
+
+# Exceptions here will not be trimmed
 ```
 
 
@@ -95,3 +110,11 @@ to see the full trace paths), you can set the environment variable
 ```
 $ PRETTY_TRACE=off ruby myscript.rb
 ```
+
+If you wish to temporarily disable trimming, you can set the environment 
+variable `PRETTY_TRACE=full` before running your script:
+
+```
+$ PRETTY_TRACE=full ruby myscript.rb
+```
+

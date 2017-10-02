@@ -19,6 +19,28 @@ describe PrettyTrace do
     end
   end
 
+  describe '::trim' do
+    before do 
+      ENV['PRETTY_TRACE_TRIM'] = nil
+    end
+
+    it "enables trimming" do
+      subject.trim
+      expect(ENV['PRETTY_TRACE_TRIM']).not_to be nil
+    end
+  end
+
+  describe '::no_trim' do
+    before do 
+      ENV['PRETTY_TRACE_TRIM'] = '1'
+    end
+
+    it "disables trimming" do
+      subject.no_trim
+      expect(ENV['PRETTY_TRACE_TRIM']).to be nil
+    end
+  end
+
   describe '::filter' do
     before do
       handler.options = { filter: [/default/] }

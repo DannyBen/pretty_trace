@@ -8,6 +8,10 @@ module PrettyTrace
         backtrace.reject! { |trace| trace =~ expression }
       end
 
+      if ENV['PRETTY_TRACE_TRIM'] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3
+        backtrace = [backtrace[0], '......    (trimmed)', backtrace[-1]] 
+      end
+
       backtrace.map! do |item|
         if item =~ /(.+):(-?\d+):in `(.+)'/
           file, line, method = $1, $2, $3
