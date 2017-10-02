@@ -23,7 +23,14 @@ $ gem install pretty_trace
 Or with bundler:
 
 ```
+# Just install, do not activate
+$ gem 'pretty_trace'
+
+# Install and enable
 $ gem 'pretty_trace', require: 'pretty_trace/enable'
+
+# Install, enable and enable trimming
+$ gem 'pretty_trace', require: 'pretty_trace/enable-trim'
 ```
 
 Example
