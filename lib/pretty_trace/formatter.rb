@@ -8,7 +8,7 @@ module PrettyTrace
         backtrace.reject! { |trace| trace =~ expression }
       end
 
-      backtrace = trim backtrace if should_trim backtrace
+      backtrace = trim backtrace if should_trim? backtrace
 
       backtrace.map! do |item|
         if item =~ /(.+):(-?\d+):in `(.+)'/
@@ -43,7 +43,7 @@ module PrettyTrace
       [backtrace[0], '......    (trimmed)', backtrace[-1]] 
     end
 
-    def self.should_trim(backtrace)
+    def self.should_trim?(backtrace)
       ENV['PRETTY_TRACE_TRIM'] and ENV['PRETTY_TRACE'] != 'full' and
         backtrace.size > 3
     end
