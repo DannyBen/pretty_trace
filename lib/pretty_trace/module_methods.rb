@@ -1,10 +1,10 @@
 module PrettyTrace
   def self.enable
-    Handler.instance.trace_point.enable unless ENV['PRETTY_TRACE'] == 'off'
+    Handler.instance.enable unless ENV['PRETTY_TRACE'] == 'off'
   end
 
   def self.disable
-    Handler.instance.trace_point.disable
+    Handler.instance.disable
   end
 
   def self.filter(filter)

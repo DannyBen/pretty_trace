@@ -3,9 +3,20 @@ require 'singleton'
 module PrettyTrace
   class Handler
     include Singleton
+    include Colors
 
-    def trace_point
-      @trace_point ||= trace_point!
+    def enable
+      @enabled = true
+      at_exit do
+        if @enabled and $!
+          show_errors $!
+          exit!
+        end
+      end
+    end
+
+    def disable
+      @enabled = false
     end
 
     def options
@@ -18,16 +29,9 @@ module PrettyTrace
 
     private
 
-    def trace_point!
-      TracePoint.new :raise do |tp|
-        exception = tp.raised_exception
-        backtrace = exception.backtrace
-        unless @already_formatted
-          pretty_trace = Formatter.pretty_trace backtrace, options
-          exception.set_backtrace pretty_trace
-          @already_formatted = true
-        end
-      end
+    def show_errors(exception)
+      puts Formatter.pretty_trace exception.backtrace, options
+      puts "\n%{red}#{exception.message}%{reset}\n" % colors
     end
 
     def default_options

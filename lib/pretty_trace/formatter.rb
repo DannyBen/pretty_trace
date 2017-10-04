@@ -4,13 +4,20 @@ module PrettyTrace
       filter = opts[:filter] || []
       filter = [filter] unless filter.is_a? Array
 
+      result = backtrace.dup
+
       filter.each do |expression|
-        backtrace.reject! { |trace| trace =~ expression }
+        result.reject! { |trace| trace =~ expression }
       end
 
-      backtrace.map! { |line| BacktraceItem.new line }
-      backtrace.reverse!.uniq!(&:path).reverse! if should_trim? backtrace
-      backtrace.map(&:formatted_line)
+      result.map! { |line| BacktraceItem.new line }
+      first_line = result[0]
+      result.reverse!
+      result.uniq!(&:path) if should_trim? result
+
+      result.push first_line unless first_line.original_line == result[-1].original_line
+
+      result.map(&:formatted_line)
     end
 
     def self.should_trim?(backtrace)
