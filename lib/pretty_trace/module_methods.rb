@@ -16,10 +16,10 @@ module PrettyTrace
   end
 
   def self.trim
-    ENV['PRETTY_TRACE_TRIM'] = '1'
+    Handler.instance.options[:trim] = true
   end
 
   def self.no_trim
-    ENV['PRETTY_TRACE_TRIM'] = nil
+    Handler.instance.options[:trim] = false
   end
 end

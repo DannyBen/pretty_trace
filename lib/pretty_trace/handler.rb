@@ -30,12 +30,18 @@ module PrettyTrace
     private
 
     def show_errors(exception)
-      puts Formatter.pretty_trace exception.backtrace, options
-      puts "\n%{red}#{exception.message}%{reset}\n" % colors
+      puts formatter.pretty_trace exception.backtrace, options
+      message = exception.message
+      message = "No message given" if message.empty?
+      puts "\n%{red}#{message}%{reset}\n" % colors
     end
 
     def default_options
       { filter: [] }
+    end
+
+    def formatter
+      Formatter.instance
     end
   end
 end;

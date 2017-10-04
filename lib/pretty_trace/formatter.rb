@@ -1,7 +1,13 @@
 module PrettyTrace
   class Formatter
-    def self.pretty_trace(backtrace, opts={})
-      filter = opts[:filter] || []
+    include Singleton
+
+    attr_reader :options
+
+    def pretty_trace(backtrace, options={})
+      @options = options
+
+      filter = options[:filter] || []
       filter = [filter] unless filter.is_a? Array
 
       result = backtrace.dup
@@ -20,9 +26,8 @@ module PrettyTrace
       result.map(&:formatted_line)
     end
 
-    def self.should_trim?(backtrace)
-      ENV['PRETTY_TRACE_TRIM'] and ENV['PRETTY_TRACE'] != 'full' and
-        backtrace.size > 3
+    def should_trim?(backtrace)
+      options[:trim] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3
     end
   end
 end
