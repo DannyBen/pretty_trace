@@ -6,6 +6,7 @@ require 'bundler'
 Bundler.require :default, :development
 
 include PrettyTrace
+PrettyTrace.disable
 
 def fixture(filename, data=nil)
   if data

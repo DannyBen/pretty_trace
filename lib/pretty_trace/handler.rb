@@ -8,7 +8,7 @@ module PrettyTrace
     def enable
       @enabled = true
       at_exit do
-        if @enabled and $!
+        if @enabled and $! and !ignored.include? $!.class
           show_errors $!
           exit!
         end
@@ -17,6 +17,10 @@ module PrettyTrace
 
     def disable
       @enabled = false
+    end
+
+    def enabled?
+      @enabled
     end
 
     def options
@@ -29,19 +33,23 @@ module PrettyTrace
 
     private
 
+    def ignored
+      [ SystemExit ]
+    end
+
     def show_errors(exception)
-      puts formatter.pretty_trace exception.backtrace, options
+      backtrace = StructuredBacktrace.new exception.backtrace, options
+      puts "\n#{backtrace}"
       message = exception.message
-      message = "No message given" if message.empty?
-      puts "\n%{red}#{message}%{reset}\n" % colors
+      if message.empty?
+        puts "\n%{blue}#{exception.class}%{reset}\n" % colors
+      else
+        puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
+      end
     end
 
     def default_options
       { filter: [] }
-    end
-
-    def formatter
-      Formatter.instance
     end
   end
 end;

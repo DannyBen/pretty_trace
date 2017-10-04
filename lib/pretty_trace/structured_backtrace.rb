@@ -1,12 +1,13 @@
 module PrettyTrace
-  class Formatter
-    include Singleton
+  class StructuredBacktrace
+    attr_reader :options, :backtrace
 
-    attr_reader :options
-
-    def pretty_trace(backtrace, options={})
+    def initialize(backtrace, options={})
       @options = options
+      @backtrace = backtrace
+    end
 
+    def structure
       filter = options[:filter] || []
       filter = [filter] unless filter.is_a? Array
 
@@ -23,8 +24,18 @@ module PrettyTrace
 
       result.push first_line unless first_line.original_line == result[-1].original_line
 
-      result.map(&:formatted_line)
+      result
     end
+
+    def formatted_backtrace
+      structure.map(&:formatted_line)
+    end
+
+    def to_s
+      formatted_backtrace.join "\n"
+    end
+
+    private
 
     def should_trim?(backtrace)
       options[:trim] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3

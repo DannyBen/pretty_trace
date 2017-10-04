@@ -2,40 +2,52 @@ require 'spec_helper'
 
 describe Handler do
   let(:exception) { raise 'hell' }
+  subject { described_class.instance }
 
-  describe '#trace_point' do
-    subject { described_class.instance.trace_point }
-
-    it "returns a TracePoint object" do
-      expect(subject).to be_a TracePoint
+  describe '#enable' do
+    before do
+      allow(subject).to receive :at_exit
+      subject.disable
+      expect(subject).not_to be_enabled
     end
 
-    context "when disabled" do
-      it "raises unaltered exceptions" do
-        subject.disable do
-          begin
-            exception
-          rescue Exception => e
-            expect(e.backtrace).to be_an Array
-            expect(e.backtrace.first).not_to match /\e\[32m/
-            expect(e.backtrace.first).to match /handler_spec.rb/
-          end
-        end
-      end
+    it "enables" do
+      subject.enable
+      expect(subject).to be_enabled
     end
 
-    context "when enabled" do
-      it "formats the exception's backtrace" do
-        subject.enable do
-          begin
-            exception
-          rescue Exception => e
-            expect(e.backtrace).to be_an Array
-            expect(e.backtrace.first).to match /\e\[32m.*handler_spec.rb\e\[0m/
-          end
-        end
-      end
+    it "registers an 'at_exit' handler" do
+      expect(subject).to receive :at_exit
+      subject.enable
     end
   end
+
+  describe '#disable' do
+    before do
+      allow(subject).to receive :at_exit
+      subject.enable
+      expect(subject).to be_enabled
+    end
+
+    it "disables" do
+      subject.disable
+      expect(subject).not_to be_enabled
+    end
+  end
+
+  describe '#options' do
+    it "returns default options" do
+      expect(subject.options).to be_a Hash
+      expect(subject.options[:filter]).to be_an Array
+    end
+  end
+
+  describe '#options=' do
+    it "stores options" do
+      subject.options = { some: 'option' }
+      expect(subject.options).to eq some: 'option'
+    end
+  end
+
 
 end

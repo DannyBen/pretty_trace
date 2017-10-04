@@ -2,42 +2,41 @@ require 'spec_helper'
 
 describe PrettyTrace do
   let(:handler) { Handler.instance }
-  let(:trace_point) { Handler.instance.trace_point }
   subject { described_class }
   
   describe '::enable' do
-    it "enables the handler's trace point" do
-      expect(trace_point).to receive :enable
+    it "enables the handler instance" do
+      expect(handler).to receive :enable
       subject.enable
     end
   end
 
   describe '::disable' do
-    it "disables the handler's trace point" do
-      expect(trace_point).to receive :disable
+    it "disables the handler instance" do
+      expect(handler).to receive :disable
       subject.disable
     end
   end
 
   describe '::trim' do
     before do 
-      ENV['PRETTY_TRACE_TRIM'] = nil
+      handler.options = {}
     end
 
     it "enables trimming" do
       subject.trim
-      expect(ENV['PRETTY_TRACE_TRIM']).not_to be nil
+      expect(handler.options[:trim]).to be true
     end
   end
 
   describe '::no_trim' do
     before do 
-      ENV['PRETTY_TRACE_TRIM'] = '1'
+      handler.options = { trim: true }
     end
 
-    it "disables trimming" do
+    it "enables trimming" do
       subject.no_trim
-      expect(ENV['PRETTY_TRACE_TRIM']).to be nil
+      expect(handler.options[:trim]).to be false
     end
   end
 
