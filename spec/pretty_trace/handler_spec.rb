@@ -1,8 +1,16 @@
 require 'spec_helper'
 
 describe Handler do
-  let(:exception) { raise 'hell' }
   subject { described_class.instance }
+
+  context "when enabled", :focus do
+    # We must run this in an external ruby file because... REASONS!
+    subject { "bundle exec ruby spec/fixtures/hell_raiser.rb" }
+
+    it "catches all exceptions on exit" do
+      expect(`#{subject}`).to match /\nline.*\[32m.*\[0m.*\[36mfixtures.*\[35mhell_raiser/
+    end
+  end
 
   describe '#enable' do
     before do

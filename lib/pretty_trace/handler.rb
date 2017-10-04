@@ -7,12 +7,14 @@ module PrettyTrace
 
     def enable
       @enabled = true
+      # :nocov: - this is actually covered through an external process
       at_exit do
         if @enabled and $! and !ignored.include? $!.class
           show_errors $!
-          exit!
+          exit! 1
         end
       end
+      # :nocov:
     end
 
     def disable
@@ -31,8 +33,6 @@ module PrettyTrace
       @options = new_options
     end
 
-    private
-
     def ignored
       [ SystemExit ]
     end
@@ -46,6 +46,7 @@ module PrettyTrace
       else
         puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
       end
+      STDOUT.flush
     end
 
     def default_options
