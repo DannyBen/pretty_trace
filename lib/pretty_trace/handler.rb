@@ -22,8 +22,11 @@ module PrettyTrace
       TracePoint.new :raise do |tp|
         exception = tp.raised_exception
         backtrace = exception.backtrace
-        pretty_trace = Formatter.pretty_trace backtrace, options
-        exception.set_backtrace pretty_trace
+        unless @already_formatted
+          pretty_trace = Formatter.pretty_trace backtrace, options
+          exception.set_backtrace pretty_trace
+          @already_formatted = true
+        end
       end
     end
 
