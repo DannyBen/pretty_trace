@@ -12,6 +12,19 @@ describe Handler do
     end
   end
 
+  context "when disabled" do
+    subject { "bundle exec ruby spec/fixtures/disabled_hell_raiser.rb" }
+
+    it "raises exceptions normally" do
+      expect(`#{subject} 2>&1`).to eq "spec/fixtures/disabled_hell_raiser.rb:2:in `<main>': hell (RuntimeError)\n"
+    end
+
+    it "exits with a non zero code" do
+      system subject
+      expect($?.exitstatus).to eq 1
+    end
+  end
+
   describe '#enable' do
     before do
       allow(subject).to receive :at_exit
