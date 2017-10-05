@@ -69,7 +69,7 @@ same file are collapsed into one line), require this script instead:
 require 'pretty_trace/enable-trim'
 ```
 
-If you prefer to have more control, you can use configure these settings 
+If you prefer to have more control, you can configure these settings 
 manually:
 
 ```ruby
