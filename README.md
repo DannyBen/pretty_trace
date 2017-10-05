@@ -40,14 +40,14 @@ Example
 
 ```ruby
 # test.rb
-require "pretty_trace/enable-enable"
+require "pretty_trace/enable-trim"
 require "fileutils"
 FileUtils.rm 'no_such_file'
 ```
 
 ### Run it:
 
-![screenshot](/screenshot.png)
+![screenshot](/screenshot.gif)
 
 
 Usage
