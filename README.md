@@ -62,8 +62,8 @@ require 'pretty_trace/enable'
 
 From this point on, any exception will be formatted.
 
-If you wish to show a trimmed version of the backtrace (only the first and 
-last line), require this script instead:
+If you wish to show a trimmed version of the backtrace (where errors from the
+same file are collapsed into one line), require this script instead:
 
 ```ruby
 require 'pretty_trace/enable-trim'
@@ -78,19 +78,16 @@ require 'pretty_trace'
 # Exceptions here will not be formatted
 
 PrettyTrace.enable
-
 # Exceptions here will be formatted
 
 PrettyTrace.disable
-
 # Exceptions here will not be formatted
 
+PrettyTrace.enable
 PrettyTrace.trim
-
-# Exceptions here will be trimmed
+# Exceptions here will be formatted and trimmed
 
 PrettyTrace.no_trim
-
 # Exceptions here will not be trimmed
 ```
 
