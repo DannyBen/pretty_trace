@@ -40,7 +40,7 @@ Example
 
 ```ruby
 # test.rb
-require "pretty_trace/enable"
+require "pretty_trace/enable-enable"
 require "fileutils"
 FileUtils.rm 'no_such_file'
 ```
