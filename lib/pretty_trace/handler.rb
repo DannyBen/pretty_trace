@@ -11,7 +11,8 @@ module PrettyTrace
       at_exit do
         if @enabled and $! and !ignored.include? $!.class
           show_errors $!
-          exit! 1
+          $stderr.reopen IO::NULL
+          $stdout.reopen IO::NULL
         end
       end
       # :nocov:
@@ -51,7 +52,7 @@ module PrettyTrace
       else
         puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
       end
-      STDOUT.flush
+      $stdout.flush
       # :nocov:
     end
 
