@@ -33,11 +33,16 @@ module PrettyTrace
       @options = new_options
     end
 
+    private
+
     def ignored
+      # :nocov:
       [ SystemExit ]
+      # :nocov:
     end
 
     def show_errors(exception)
+      # :nocov:
       backtrace = StructuredBacktrace.new exception.backtrace, options
       puts "\n#{backtrace}"
       message = exception.message
@@ -47,6 +52,7 @@ module PrettyTrace
         puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
       end
       STDOUT.flush
+      # :nocov:
     end
 
     def default_options
