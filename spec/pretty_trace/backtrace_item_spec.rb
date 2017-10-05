@@ -75,5 +75,4 @@ describe BacktraceItem do
     end
   end
 
-
 end

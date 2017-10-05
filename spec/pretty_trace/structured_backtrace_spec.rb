@@ -7,8 +7,8 @@ describe StructuredBacktrace do
     "file:3:in `three'", 
     "lib:1:in `four'",
     "lib:2:in `five'",
-    "lib:3:in `seven'",
-    "lib:4:in `eight'"
+    "lib:3:in `six'",
+    "lib:4:in `seven'"
   ]}
 
   let(:short_backtrace) { [
@@ -22,7 +22,7 @@ describe StructuredBacktrace do
     it "returns a reversed array of BacktraceItems" do
       expect(subject.structure).to be_an Array
       expect(subject.structure.first).to be_a BacktraceItem
-      expect(subject.structure.first.method).to eq 'eight'
+      expect(subject.structure.first.method).to eq 'seven'
     end
 
     context "with filter" do
@@ -39,7 +39,7 @@ describe StructuredBacktrace do
 
       it "keeps the very first line and the last line of each file" do
         expect(subject.structure.count).to be 3
-        expect(subject.structure[0].method).to eq 'eight'
+        expect(subject.structure[0].method).to eq 'seven'
         expect(subject.structure[1].method).to eq 'three'
         expect(subject.structure[2].method).to eq 'one'
       end
@@ -71,7 +71,7 @@ describe StructuredBacktrace do
   describe '#formatted_backtrace' do
     it "returns an array of color highlighted stings" do
       expect(subject.formatted_backtrace).to be_an Array
-      expect(subject.formatted_backtrace.first).to match /line.*\[32m4.*\[0m.*\[36m.*\[35mlib.*\[0m.*\[34meight.*\[0m/
+      expect(subject.formatted_backtrace.first).to match /line.*\[32m4.*\[0m.*\[36m.*\[35mlib.*\[0m.*\[34mseven.*\[0m/
     end
   end
 

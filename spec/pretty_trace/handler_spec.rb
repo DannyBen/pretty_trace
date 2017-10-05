@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Handler do
   subject { described_class.instance }
 
-  context "when enabled", :focus do
+  context "when enabled" do
     # We must run this in an external ruby file because... REASONS!
     subject { "bundle exec ruby spec/fixtures/hell_raiser.rb" }
 
@@ -56,6 +56,5 @@ describe Handler do
       expect(subject.options).to eq some: 'option'
     end
   end
-
 
 end
