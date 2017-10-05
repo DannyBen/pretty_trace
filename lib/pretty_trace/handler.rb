@@ -3,9 +3,26 @@ require 'singleton'
 module PrettyTrace
   class Handler
     include Singleton
+    include Colors
 
-    def trace_point
-      @trace_point ||= trace_point!
+    def enable
+      @enabled = true
+      # :nocov: - this is actually covered through an external process
+      at_exit do
+        if @enabled and $! and !ignored.include? $!.class
+          show_errors $!
+          exit! 1
+        end
+      end
+      # :nocov:
+    end
+
+    def disable
+      @enabled = false
+    end
+
+    def enabled?
+      @enabled
     end
 
     def options
@@ -18,13 +35,24 @@ module PrettyTrace
 
     private
 
-    def trace_point!
-      TracePoint.new :raise do |tp|
-        exception = tp.raised_exception
-        backtrace = exception.backtrace
-        pretty_trace = Formatter.pretty_trace backtrace, options
-        exception.set_backtrace pretty_trace
+    def ignored
+      # :nocov:
+      [ SystemExit ]
+      # :nocov:
+    end
+
+    def show_errors(exception)
+      # :nocov:
+      backtrace = StructuredBacktrace.new exception.backtrace, options
+      puts "\n#{backtrace}"
+      message = exception.message
+      if message.empty?
+        puts "\n%{blue}#{exception.class}%{reset}\n" % colors
+      else
+        puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
       end
+      STDOUT.flush
+      # :nocov:
     end
 
     def default_options
