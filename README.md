@@ -22,7 +22,7 @@ $ gem install pretty_trace
 
 Or with bundler:
 
-```
+```ruby
 # Just install, do not activate
 gem 'pretty_trace'
 
