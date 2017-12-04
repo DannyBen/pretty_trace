@@ -8,7 +8,7 @@ describe Handler do
     subject { "bundle exec ruby spec/fixtures/hell_raiser.rb" }
 
     it "catches all exceptions on exit" do
-      expect(`#{subject}`).to match /\nline.*\[32m.*\[0m.*\[36mfixtures.*\[35mhell_raiser/
+      expect(`#{subject}`).to match(/\nline.*\[32m.*\[0m.*\[36mfixtures.*\[35mhell_raiser/)
     end
   end
 

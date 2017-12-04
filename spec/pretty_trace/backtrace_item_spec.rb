@@ -21,7 +21,7 @@ describe BacktraceItem do
 
   describe '#formatted_line' do
     it "returns color coded line" do
-      expect(subject.formatted_line).to match /line.*\[32m777/
+      expect(subject.formatted_line).to match(/line.*\[32m777/)
     end
 
     context "with a badly formatted line" do

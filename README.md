@@ -2,10 +2,11 @@ Pretty Trace - Pretty Errors and Backtrace
 ==================================================
 
 [![Gem](https://img.shields.io/gem/v/pretty_trace.svg?style=flat-square)](https://rubygems.org/gems/pretty_trace)
-[![Travis](https://img.shields.io/travis/DannyBen/pretty_trace.svg?style=flat-square)](https://travis-ci.org/DannyBen/pretty_trace)
+[![Build](https://img.shields.io/travis/DannyBen/pretty_trace.svg?style=flat-square)](https://travis-ci.org/DannyBen/pretty_trace)
+[![Dependencies](https://img.shields.io/gemnasium/DannyBen/pretty_trace.svg?style=flat-square)](https://gemnasium.com/DannyBen/pretty_trace)
+[![Code Quality](https://img.shields.io/codacy/grade/258135c94e9c402e931596bea8d303ee.svg?style=flat-square)](https://www.codacy.com/app/db/pretty_trace)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/DannyBen/pretty_trace.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/pretty_trace)
 [![Issues](https://img.shields.io/codeclimate/issues/github/DannyBen/pretty_trace.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/pretty_trace)
-[![Gemnasium](https://img.shields.io/gemnasium/DannyBen/pretty_trace.svg?style=flat-square)](https://gemnasium.com/DannyBen/pretty_trace)
 
 ---
 
