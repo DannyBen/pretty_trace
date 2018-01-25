@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BacktraceItem do
   let(:line) { "dir/subdir/file.rb:777:in `method'" }
-  let(:bad_line) { "some exceptions with bad style" }
+  let(:bad_line) { "some exception with bad style" }
   subject { BacktraceItem.new line }
 
   describe '#formatted?' do
@@ -58,7 +58,7 @@ describe BacktraceItem do
   end
 
   describe '#dir' do
-    it "returnsdir " do
+    it "returns dir" do
       expect(subject.dir).to eq 'subdir/'
     end
   end

@@ -69,7 +69,7 @@ describe StructuredBacktrace do
   end
 
   describe '#formatted_backtrace' do
-    it "returns an array of color highlighted stings" do
+    it "returns an array of color highlighted strings" do
       expect(subject.formatted_backtrace).to be_an Array
       expect(subject.formatted_backtrace.first).to match(/line.*\[32m4.*\[0m.*\[36m.*\[35mlib.*\[0m.*\[34mseven.*\[0m/)
     end

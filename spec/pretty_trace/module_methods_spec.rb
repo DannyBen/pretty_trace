@@ -34,7 +34,7 @@ describe PrettyTrace do
       handler.options = { trim: true }
     end
 
-    it "enables trimming" do
+    it "disables trimming" do
       subject.no_trim
       expect(handler.options[:trim]).to be false
     end
