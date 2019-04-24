@@ -5,7 +5,6 @@ Pretty Trace - Pretty Errors and Backtrace
 [![Build Status](https://travis-ci.com/DannyBen/pretty_trace.svg?branch=master)](https://travis-ci.com/DannyBen/pretty_trace)
 [![BCH compliance](https://bettercodehub.com/edge/badge/DannyBen/pretty_trace?branch=master)](https://bettercodehub.com/results/DannyBen/pretty_trace)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9db6ec58ec7ac1484aa/maintainability)](https://codeclimate.com/github/DannyBen/pretty_trace/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/c9db6ec58ec7ac1484aa/test_coverage)](https://codeclimate.com/github/DannyBen/pretty_trace/test_coverage)
 
 ---
 
