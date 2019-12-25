@@ -34,7 +34,7 @@ module PrettyTrace
       @options = new_options
     end
 
-    private
+  private
 
     def ignored
       # :nocov:

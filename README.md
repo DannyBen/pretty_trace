@@ -13,6 +13,7 @@ in your ruby script, and errors will become clearer and more readable.
 
 ---
 
+
 Install
 --------------------------------------------------
 
@@ -32,6 +33,7 @@ gem 'pretty_trace', require: 'pretty_trace/enable'
 # Or, install, enable and enable trimming
 gem 'pretty_trace', require: 'pretty_trace/enable-trim'
 ```
+
 
 Example
 --------------------------------------------------
@@ -115,10 +117,20 @@ to see the full trace paths), you can set the environment variable
 $ PRETTY_TRACE=off ruby myscript.rb
 ```
 
-If you wish to temporarily disable trimming, you can set the environment 
-variable `PRETTY_TRACE=full` before running your script:
+If you wish to temporarily disable trimming and filtering, you can set the
+environment variable `PRETTY_TRACE=full` before running your script:
 
 ```
 $ PRETTY_TRACE=full ruby myscript.rb
 ```
 
+
+Contributing / Support
+--------------------------------------------------
+
+If you experience any issue, have a question or a suggestion, or if you wish
+to contribute, feel free to [open an issue][issues].
+
+---
+
+[issues]: https://github.com/DannyBen/pretty_trace/issues

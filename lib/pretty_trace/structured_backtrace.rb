@@ -13,8 +13,10 @@ module PrettyTrace
 
       result = backtrace.dup
 
-      filter.each do |expression|
-        result.reject! { |trace| trace =~ expression }
+      unless ENV['PRETTY_TRACE'] == 'full'
+        filter.each do |expression|
+          result.reject! { |trace| trace =~ expression }
+        end
       end
 
       result.map! { |line| BacktraceItem.new line }
@@ -35,7 +37,7 @@ module PrettyTrace
       formatted_backtrace.join "\n"
     end
 
-    private
+  private
 
     def should_trim?(backtrace)
       options[:trim] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3
