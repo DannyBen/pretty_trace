@@ -45,7 +45,9 @@ module PrettyTrace
     def show_errors(exception)
       # :nocov:
       backtrace = StructuredBacktrace.new exception.backtrace, options
-      puts "\n#{backtrace}"
+
+      puts "\n#{backtrace}" unless backtrace.empty?
+
       message = exception.message
       if message.empty?
         puts "\n%{blue}#{exception.class}%{reset}\n" % colors

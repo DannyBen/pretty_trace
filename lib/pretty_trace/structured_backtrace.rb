@@ -24,7 +24,9 @@ module PrettyTrace
       result.reverse!
       result.uniq!(&:path) if should_trim? result
 
-      result.push first_line unless first_line.original_line == result[-1].original_line
+      if first_line and first_line.original_line != result[-1].original_line
+        result.push first_line
+      end
 
       result
     end
@@ -35,6 +37,10 @@ module PrettyTrace
 
     def to_s
       formatted_backtrace.join "\n"
+    end
+
+    def empty?
+      formatted_backtrace.empty?
     end
 
   private

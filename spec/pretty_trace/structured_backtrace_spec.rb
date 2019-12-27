@@ -32,7 +32,15 @@ describe StructuredBacktrace do
         expect(subject.structure.count).to be 3
         expect(subject.structure.first.path).to eq 'file'
       end
-    end    
+    end
+
+    context "when backtrace is empty" do
+      subject { described_class.new short_backtrace, filter: [/lib/, /file/] }
+
+      it "returns an empty array" do
+        expect(subject.structure).to eq []
+      end
+    end
 
     context "with trim" do
       subject { described_class.new backtrace, trim: true }
@@ -64,6 +72,22 @@ describe StructuredBacktrace do
         it "temporarily disables trimming" do
           expect(subject.structure.count).to be 7
         end
+      end
+    end
+  end
+
+  describe '#empty?' do
+    context "when there is a backtrace" do
+      it "returns false" do
+        expect(subject.empty?).to be false
+      end
+    end
+
+    context "when there is no backtrace" do
+      subject { described_class.new short_backtrace, filter: [/lib/, /file/] }
+
+      it "returns true" do
+        expect(subject.empty?).to be true
       end
     end
   end
