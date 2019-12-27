@@ -10,6 +10,14 @@ describe Handler do
     it "catches all exceptions on exit" do
       expect(`#{subject}`).to match(/\nline.*\[32m.*\[0m.*\[36mfixtures.*\[35mhell_raiser/)
     end
+
+    context "when the backtrace is empty" do
+      subject { "bundle exec ruby spec/fixtures/filtered_hell_raiser.rb" }
+
+      it "only shows the error" do
+        expect(`#{subject}`).to eq "\n\e[34mRuntimeError\n\e[31mhell\e[0m\n"
+      end
+    end
   end
 
   context "when disabled" do
