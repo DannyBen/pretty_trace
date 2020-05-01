@@ -54,6 +54,11 @@ module PrettyTrace
       else
         puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
       end
+
+      if options[:debug_tip] and ENV['PRETTY_TRACE'] != 'full'
+        puts "\nTIP: Run with %{cyan}PRETTY_TRACE=full%{reset} (or %{cyan}off%{reset}) for debug information" % colors
+      end
+
       $stdout.flush
       # :nocov:
     end

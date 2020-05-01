@@ -15,6 +15,14 @@ module PrettyTrace
     end
   end
 
+  def self.debug_tip
+    Handler.instance.options[:debug_tip] = true
+  end
+
+  def self.no_debug_tip
+    Handler.instance.options[:debug_tip] = false
+  end
+
   def self.trim
     Handler.instance.options[:trim] = true
   end

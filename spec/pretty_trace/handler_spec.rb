@@ -18,6 +18,14 @@ describe Handler do
         expect(`#{subject}`).to eq "\n\e[34mRuntimeError\n\e[31mhell\e[0m\n"
       end
     end
+
+    context "when debug_tip is on" do
+      subject { "bundle exec ruby spec/fixtures/tipper.rb" }
+      
+      it "shows a friendly debug tip" do
+        expect(`#{subject}`).to match %r{Run with .*PRETTY_TRACE=full.*for debug information}
+      end
+    end
   end
 
   context "when disabled" do
