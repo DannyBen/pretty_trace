@@ -40,6 +40,24 @@ describe PrettyTrace do
     end
   end
 
+  describe '::debug_tip' do
+    it "enables debug tip" do
+      subject.debug_tip
+      expect(handler.options[:debug_tip]).to be true
+    end
+  end
+
+  describe '::no_debug_tip' do
+    before do 
+      handler.options = { debug_tip: true }
+    end
+
+    it "disabled debug tip" do
+      subject.no_debug_tip
+      expect(handler.options[:debug_tip]).to be false
+    end
+  end
+
   describe '::filter' do
     before do
       handler.options = { filter: [/default/] }
