@@ -1,10 +1,19 @@
+<div align='center'>
+
 # Pretty Trace - Pretty Errors and Backtrace
+
+
+![flag](better-backtrace.png)
 
 [![Gem Version](https://badge.fury.io/rb/pretty_trace.svg)](https://badge.fury.io/rb/pretty_trace)
 [![Build Status](https://github.com/DannyBen/pretty_trace/workflows/Test/badge.svg)](https://github.com/DannyBen/pretty_trace/actions?query=workflow%3ATest)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9db6ec58ec7ac1484aa/maintainability)](https://codeclimate.com/github/DannyBen/pretty_trace/maintainability)
 
+</div>
+
 ---
+
+
 
 Make your Ruby backtrace pretty again. Just require `pretty_trace/enable` 
 in your ruby script, and errors will become clearer and more readable.
@@ -45,7 +54,7 @@ FileUtils.rm 'no_such_file'
 
 ### Run it:
 
-![screenshot](/screenshot.gif)
+![screenshot](screenshot.gif)
 
 
 ## Usage
