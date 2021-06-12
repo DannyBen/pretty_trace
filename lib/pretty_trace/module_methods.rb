@@ -1,33 +1,35 @@
 module PrettyTrace
-  def self.enable
-    Handler.instance.enable unless ENV['PRETTY_TRACE'] == 'off'
-  end
-
-  def self.disable
-    Handler.instance.disable
-  end
-
-  def self.filter(filter)
-    if filter.is_a? Array
-      Handler.instance.options[:filter] += filter
-    else
-      Handler.instance.options[:filter] << filter
+  class << self
+    def enable
+      Handler.enable unless ENV['PRETTY_TRACE'] == 'off'
     end
-  end
 
-  def self.debug_tip
-    Handler.instance.options[:debug_tip] = true
-  end
+    def disable
+      Handler.disable
+    end
 
-  def self.no_debug_tip
-    Handler.instance.options[:debug_tip] = false
-  end
+    def filter(filter)
+      if filter.is_a? Array
+        Handler.options[:filter] += filter
+      else
+        Handler.options[:filter] << filter
+      end
+    end
 
-  def self.trim
-    Handler.instance.options[:trim] = true
-  end
+    def debug_tip
+      Handler.options[:debug_tip] = true
+    end
 
-  def self.no_trim
-    Handler.instance.options[:trim] = false
+    def no_debug_tip
+      Handler.options[:debug_tip] = false
+    end
+
+    def trim
+      Handler.options[:trim] = true
+    end
+
+    def no_trim
+      Handler.options[:trim] = false
+    end
   end
 end

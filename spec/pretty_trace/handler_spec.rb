@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Handler do
-  subject { described_class.instance }
+  subject { described_class }
 
   context "when enabled" do
     # We must run this in an external ruby file because... REASONS!

@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe PrettyTrace do
-  let(:handler) { Handler.instance }
+  let(:handler) { Handler }
   subject { described_class }
   
   describe '::enable' do
-    it "enables the handler instance" do
+    it "enables the handler" do
       expect(handler).to receive :enable
       subject.enable
     end
   end
 
   describe '::disable' do
-    it "disables the handler instance" do
+    it "disables the handler" do
       expect(handler).to receive :disable
       subject.disable
     end
@@ -81,5 +81,4 @@ describe PrettyTrace do
       end
     end
   end
-
 end
