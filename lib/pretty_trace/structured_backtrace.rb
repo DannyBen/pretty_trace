@@ -8,13 +8,10 @@ module PrettyTrace
     end
 
     def structure
-      filter = options[:filter] || []
-      filter = [filter] unless filter.is_a? Array
-
       result = backtrace.dup
 
       unless ENV['PRETTY_TRACE'] == 'full'
-        filter.each do |expression|
+        filters.each do |expression|
           result.reject! { |trace| trace =~ expression }
         end
       end
@@ -44,6 +41,11 @@ module PrettyTrace
     end
 
   private
+
+    def filters
+      result = options[:filter] || []
+      result.is_a?(Array) ? result : [result]
+    end
 
     def should_trim?(backtrace)
       options[:trim] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3
