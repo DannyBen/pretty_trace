@@ -86,4 +86,27 @@ describe Handler do
     end
   end
 
+  describe '#debug_tip?' do
+    it "returns false by default" do
+      expect(subject.debug_tip?).to be false
+    end
+
+    context "when options[:debug_tip] is on" do
+      before { subject.options[:debug_tip] = true }
+
+      it "returns true" do
+        expect(subject.debug_tip?).to be true
+      end
+
+      context "but when PRETTY_TRACE=full" do
+        before { ENV['PRETTY_TRACE'] = 'full' }
+        after  { ENV['PRETTY_TRACE'] = nil }
+        
+        it "returns false" do
+          expect(subject.debug_tip?).to be false
+        end
+      end
+    end
+  end
+
 end

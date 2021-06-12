@@ -24,6 +24,10 @@ module PrettyTrace
         @enabled
       end
 
+      def debug_tip?
+        !!(options[:debug_tip] and ENV['PRETTY_TRACE'] != 'full')
+      end
+
       def options
         @options ||= default_options
       end
@@ -53,7 +57,7 @@ module PrettyTrace
           puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
         end
 
-        if options[:debug_tip] and ENV['PRETTY_TRACE'] != 'full'
+        if debug_tip?
           puts "\nTIP: Run with %{cyan}PRETTY_TRACE=full%{reset} (or %{cyan}off%{reset}) for debug information" % colors
         end
 
