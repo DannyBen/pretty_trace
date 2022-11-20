@@ -6,17 +6,18 @@ module PrettyTrace
 
     def initialize(original_line)
       @original_line = original_line
-      @path, @file, @line, @dir, @full_dir = nil, nil, nil, nil, nil
       @formatted = false
 
-      if @original_line =~ /(.+):(-?\d+):in `(.+)'/
-        @formatted = true
-        @path, @line, @method = $1, $2, $3
-        @full_dir = File.dirname(@path)
-        @dir = @full_dir.split('/').last
-        @dir = @dir == '.' ? '' : "#{dir}/"
-        @file = File.basename @path
-      end
+      return unless @original_line =~ /(.+):(-?\d+):in `(.+)'/
+
+      @formatted = true
+      @path = $1
+      @line = $2
+      @method = $3
+      @full_dir = File.dirname(@path)
+      @dir = @full_dir.split('/').last
+      @dir = @dir == '.' ? '' : "#{dir}/"
+      @file = File.basename @path
     end
 
     def formatted?

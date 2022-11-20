@@ -1,0 +1,46 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+inherit_gem:
+  rentacop: rentacop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+  SuggestExtensions: false
+  Exclude:
+    - 'dev/**/*'
+
+# Allow long lines in some cases
+Layout/LineLength:
+  Exclude:
+    - lib/pretty_trace/backtrace_item.rb
+
+# Allow hyphen instead of underscore in some filenames
+Naming/FileName:
+  Exclude:
+    - 'lib/pretty_trace/enable-trim.rb'
+
+# Allow stubbing of other `subject` methods
+RSpec/SubjectStub:
+  Enabled: false
+
+# Prefer `receive` over `have_received` spies
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+# Allow `expect` in `before` block since it ensures state
+RSpec/ExpectInHook:
+  Enabled: false
+
+# Allow multiple expectations per block
+RSpec/MultipleExpectations:
+  Max: 4
+
+# Allow deeper group nesting
+RSpec/NestedGroups:
+  Max: 4
+
+# Allow nameless `subject`
+RSpec/NamedSubject:
+  Enabled: false

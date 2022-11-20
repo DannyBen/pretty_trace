@@ -2,7 +2,7 @@ module PrettyTrace
   class StructuredBacktrace
     attr_reader :options, :backtrace
 
-    def initialize(backtrace, options={})
+    def initialize(backtrace, options = {})
       @options = options
       @backtrace = backtrace
     end
@@ -21,7 +21,7 @@ module PrettyTrace
       result.reverse!
       result.uniq!(&:path) if should_trim? result
 
-      if first_line and first_line.original_line != result[-1].original_line
+      if first_line && (first_line.original_line != result[-1].original_line)
         result.push first_line
       end
 

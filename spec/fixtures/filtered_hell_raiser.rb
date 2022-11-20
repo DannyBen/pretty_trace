@@ -1,5 +1,5 @@
 require 'pretty_trace/enable'
 
-PrettyTrace.filter /fixtures/
+PrettyTrace.filter(/fixtures/)
 
 raise 'hell'

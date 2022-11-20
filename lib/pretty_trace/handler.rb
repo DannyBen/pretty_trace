@@ -3,11 +3,13 @@ module PrettyTrace
     class << self
       include Colors
 
+      attr_writer :options
+
       def enable
         @enabled = true
         # :nocov: - this is actually covered through an external process
         at_exit do
-          if @enabled and $! and !ignored.include? $!.class
+          if @enabled && $! && !ignored.include?($!.class)
             show_errors $!
             $stderr.reopen IO::NULL
             $stdout.reopen IO::NULL
@@ -32,15 +34,11 @@ module PrettyTrace
         @options ||= default_options
       end
 
-      def options=(new_options)
-        @options = new_options
-      end
-
     private
 
       def ignored
         # :nocov:
-        [ SystemExit ]
+        [SystemExit]
         # :nocov:
       end
 
