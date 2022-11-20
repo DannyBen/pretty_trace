@@ -8,10 +8,14 @@ Bundler.require :default, :development
 include PrettyTrace
 PrettyTrace.disable
 
-def fixture(filename, data=nil)
+def fixture(filename, data = nil)
   if data
     File.write "spec/fixtures/#{filename}", data
-    raise "Warning: Fixture data was written.\nThis is perfectly fine if it was intended,\nbut tests cannot proceed with it as a precaution."
+    raise <<~WARNING
+      Warning: Fixture data was written.
+      This is perfectly fine if it was intended,
+      but tests cannot proceed with it as a precaution.
+    WARNING
   else
     File.read "spec/fixtures/#{filename}"
   end
