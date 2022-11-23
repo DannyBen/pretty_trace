@@ -3,7 +3,9 @@ require:
   - rubocop-rspec
 
 inherit_gem:
-  rentacop: rentacop.yml
+  rentacop:
+    - rentacop.yml
+    - rspec.yml
 
 AllCops:
   TargetRubyVersion: 2.6
@@ -20,27 +22,3 @@ Layout/LineLength:
 Naming/FileName:
   Exclude:
     - 'lib/pretty_trace/enable-trim.rb'
-
-# Allow stubbing of other `subject` methods
-RSpec/SubjectStub:
-  Enabled: false
-
-# Prefer `receive` over `have_received` spies
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
-# Allow `expect` in `before` block since it ensures state
-RSpec/ExpectInHook:
-  Enabled: false
-
-# Allow multiple expectations per block
-RSpec/MultipleExpectations:
-  Max: 4
-
-# Allow deeper group nesting
-RSpec/NestedGroups:
-  Max: 4
-
-# Allow nameless `subject`
-RSpec/NamedSubject:
-  Enabled: false
