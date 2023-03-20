@@ -1,16 +1,3 @@
-require "runfile-tasks"
-require 'fileutils'
-require 'pretty_trace/enable'
-
 title   "PrettyTrace Developer Toolbelt"
-summary "Runfile tasks for building the PrettyTrace gem"
-version PrettyTrace::VERSION
-
-RunfileTasks::RubyGems.all 'pretty_trace'
-RunfileTasks::Testing.rspec
-
-PrettyTrace.filter /(ruby_executable_hooks|bin\/run|lib\/runfile)/
-
-action :debug do
-  FileUtils.rm 'no_such.file'
-end
+import_gem 'runfile-tasks/gem'
+import 'debug'
