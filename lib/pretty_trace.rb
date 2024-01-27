@@ -5,4 +5,4 @@ require 'pretty_trace/handler'
 require 'pretty_trace/structured_backtrace'
 require 'pretty_trace/module_methods'
 
-require 'byebug' if ENV['BYEBUG']
+require 'debug' if ENV['DEBUGGER']

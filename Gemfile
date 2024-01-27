@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'byebug'
+gem 'debug'
 gem 'rspec'
 gem 'runfile'
 gem 'runfile-tasks'
