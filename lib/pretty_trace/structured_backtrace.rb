@@ -9,11 +9,13 @@ module PrettyTrace
 
     def structure
       result = backtrace_list.map { |line| BacktraceItem.new line }
-      if should_trim? result
+      result = if should_trim? result
         result.group_by(&:path).flat_map { |_, items| [items.first, items.last].uniq }
       else
         result
       end
+
+      should_reverse? ? result.reverse : result
     end
 
     def formatted_backtrace
@@ -49,6 +51,10 @@ module PrettyTrace
 
     def should_trim?(backtrace)
       options[:trim] and ENV['PRETTY_TRACE'] != 'full' and backtrace.size > 3
+    end
+
+    def should_reverse?
+      options[:reverse]
     end
   end
 end

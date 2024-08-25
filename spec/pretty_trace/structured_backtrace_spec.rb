@@ -5,20 +5,20 @@ describe StructuredBacktrace do
 
   let(:backtrace) do
     [
-      "file:1:in `one'",
-      "file:2:in `two'",
-      "file:3:in `three'",
-      "lib:1:in `four'",
-      "lib:2:in `five'",
-      "lib:3:in `six'",
       "lib:4:in `seven'",
+      "lib:3:in `six'",
+      "lib:2:in `five'",
+      "lib:1:in `four'",
+      "file:3:in `three'",
+      "file:2:in `two'",
+      "file:1:in `one'",
     ]
   end
 
   let(:short_backtrace) do
     [
-      "file:1:in `method'",
       "lib:2:in `method'",
+      "file:1:in `method'",
     ]
   end
 
@@ -26,7 +26,7 @@ describe StructuredBacktrace do
     it 'returns a reversed array of BacktraceItems' do
       expect(subject.structure).to be_an Array
       expect(subject.structure.first).to be_a BacktraceItem
-      expect(subject.structure.first.method).to eq 'seven'
+      expect(subject.structure.first.method).to eq 'one'
     end
 
     context 'with filter' do
@@ -51,10 +51,10 @@ describe StructuredBacktrace do
 
       it 'keeps the first and the last line of each file' do
         expect(subject.structure.count).to be 4
-        expect(subject.structure[0].method).to eq 'seven'
-        expect(subject.structure[1].method).to eq 'four'
-        expect(subject.structure[2].method).to eq 'three'
-        expect(subject.structure[3].method).to eq 'one'
+        expect(subject.structure[0].method).to eq 'one'
+        expect(subject.structure[1].method).to eq 'three'
+        expect(subject.structure[2].method).to eq 'four'
+        expect(subject.structure[3].method).to eq 'seven'
       end
 
       context 'when backtrace is 3 locations or less' do
@@ -79,6 +79,15 @@ describe StructuredBacktrace do
         end
       end
     end
+
+    context 'with reverse' do
+      subject { described_class.new backtrace, reverse: true }
+
+      it 'shows the first file last' do
+        expect(subject.structure[0].method).to eq 'seven'
+        expect(subject.structure[6].method).to eq 'one'
+      end
+    end
   end
 
   describe '#empty?' do
@@ -100,14 +109,15 @@ describe StructuredBacktrace do
   describe '#formatted_backtrace' do
     it 'returns an array of color highlighted strings' do
       expect(subject.formatted_backtrace).to be_an Array
-      expect(subject.formatted_backtrace.first).to match(/line.*\[32m4.*\[0m.*\[36m.*\[35mlib.*\[0m.*\[34mseven.*\[0m/)
+      expect(subject.formatted_backtrace.join("\n"))
+        .to match_approval('structured_backtrace/formatted_backtrace')
     end
   end
 
   describe '#to_s' do
     it 'returns a merged formatted_backtrace' do
       expect(subject.to_s).to be_a String
-      expect(subject.to_s).to match(/line.*\[32m4.*\[0m/)
+      expect(subject.to_s).to match_approval('structured_backtrace/to_s')
     end
   end
 end

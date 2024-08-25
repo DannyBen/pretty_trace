@@ -88,10 +88,12 @@ PrettyTrace.disable
 
 PrettyTrace.enable
 PrettyTrace.trim
-# Exceptions here will be formatted and trimmed
+PrettyTrace.reverse
+# Exceptions here will be formatted, trimmed and in reverse order
 
 PrettyTrace.no_trim
-# Exceptions here will not be trimmed
+PrettyTrace.no_reverse
+# Exceptions here will not be trimmed or reversed
 ```
 
 
