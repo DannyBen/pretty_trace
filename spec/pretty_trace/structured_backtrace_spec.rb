@@ -49,11 +49,12 @@ describe StructuredBacktrace do
     context 'with trim' do
       subject { described_class.new backtrace, trim: true }
 
-      it 'keeps the very first line and the last line of each file' do
-        expect(subject.structure.count).to be 3
+      it 'keeps the first and the last line of each file' do
+        expect(subject.structure.count).to be 4
         expect(subject.structure[0].method).to eq 'seven'
-        expect(subject.structure[1].method).to eq 'three'
-        expect(subject.structure[2].method).to eq 'one'
+        expect(subject.structure[1].method).to eq 'four'
+        expect(subject.structure[2].method).to eq 'three'
+        expect(subject.structure[3].method).to eq 'one'
       end
 
       context 'when backtrace is 3 locations or less' do

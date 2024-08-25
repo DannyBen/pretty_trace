@@ -8,24 +8,12 @@ module PrettyTrace
     end
 
     def structure
-      result = backtrace.dup
-
-      unless ENV['PRETTY_TRACE'] == 'full'
-        filters.each do |expression|
-          result.reject! { |trace| trace =~ expression }
-        end
+      result = backtrace_list.map { |line| BacktraceItem.new line }
+      if should_trim? result
+        result.group_by(&:path).flat_map { |_, items| [items.first, items.last].uniq }
+      else
+        result
       end
-
-      result.map! { |line| BacktraceItem.new line }
-      first_line = result[0]
-      result.reverse!
-      result.uniq!(&:path) if should_trim? result
-
-      if first_line && (first_line.original_line != result[-1].original_line)
-        result.push first_line
-      end
-
-      result
     end
 
     def formatted_backtrace
@@ -41,6 +29,18 @@ module PrettyTrace
     end
 
   private
+
+    def backtrace_list
+      result = backtrace.dup
+
+      unless ENV['PRETTY_TRACE'] == 'full'
+        filters.each do |expression|
+          result.reject! { |trace| trace =~ expression }
+        end
+      end
+
+      result.reverse
+    end
 
     def filters
       result = options[:filter] || []
