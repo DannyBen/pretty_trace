@@ -1,0 +1,7 @@
+
+line [1;32m3   [0m in [36mfixtures/[35mtipper.rb[0m > [34m<main>[0m
+
+[31m█ [0m[1mRuntimeError[0m
+[31m█ [0m[33mhell[0m
+
+Tip: Run with [36mPRETTY_TRACE=full[0m (or [36moff[0m) for debug information

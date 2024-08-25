@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe StructuredBacktrace do
   subject { described_class.new backtrace }
 

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe PrettyTrace do
   subject { described_class }
 

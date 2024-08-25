@@ -6,6 +6,8 @@
 [![Build Status](https://github.com/DannyBen/pretty_trace/workflows/Test/badge.svg)](https://github.com/DannyBen/pretty_trace/actions?query=workflow%3ATest)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9db6ec58ec7ac1484aa/maintainability)](https://codeclimate.com/github/DannyBen/pretty_trace/maintainability)
 
+![screenshot](support/screenshot/enabled.svg)
+
 </div>
 
 ---
@@ -38,21 +40,15 @@ gem 'pretty_trace', require: 'pretty_trace/enable-trim'
 ```
 
 
-## Example
-
-### Create this ruby file:
+## Quick Start
 
 ```ruby
 # test.rb
 require "pretty_trace/enable-trim"
 require "fileutils"
+
 FileUtils.rm 'no_such_file'
 ```
-
-### Run it:
-
-![screenshot](screenshot.gif)
-
 
 ## Usage
 
