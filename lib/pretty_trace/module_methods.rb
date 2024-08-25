@@ -31,5 +31,13 @@ module PrettyTrace
     def no_trim
       Handler.options[:trim] = false
     end
+
+    def reverse
+      Handler.options[:reverse] = true
+    end
+
+    def no_reverse
+      Handler.options[:reverse] = false
+    end
   end
 end

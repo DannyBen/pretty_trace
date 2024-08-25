@@ -8,6 +8,7 @@ inherit_gem:
     - rspec.yml
 
 AllCops:
+  SuggestExtensions: false
   TargetRubyVersion: 3.0
   Exclude:
     - 'dev/**/*'

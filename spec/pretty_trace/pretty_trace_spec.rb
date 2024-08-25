@@ -41,6 +41,29 @@ describe PrettyTrace do
     end
   end
 
+  describe '::reverse' do
+    before do
+      handler.options = {}
+    end
+
+    it 'enables reverse order' do
+      subject.reverse
+      expect(handler.options[:reverse]).to be true
+    end
+  end
+
+  describe '::no_reverse' do
+    before do
+      handler.options = { reverse: true }
+    end
+
+    it 'disables reverse order' do
+      subject.no_reverse
+      expect(handler.options[:reverse]).to be false
+    end
+  end
+
+
   describe '::debug_tip' do
     it 'enables debug tip' do
       subject.debug_tip
