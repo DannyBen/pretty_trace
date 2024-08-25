@@ -1,7 +1,7 @@
-line [32m1   [0m in [36m[35mfile[0m > [34mone[0m
-line [32m2   [0m in [36m[35mfile[0m > [34mtwo[0m
-line [32m3   [0m in [36m[35mfile[0m > [34mthree[0m
-line [32m1   [0m in [36m[35mlib[0m > [34mfour[0m
-line [32m2   [0m in [36m[35mlib[0m > [34mfive[0m
-line [32m3   [0m in [36m[35mlib[0m > [34msix[0m
-line [32m4   [0m in [36m[35mlib[0m > [34mseven[0m
+line [1;32m1   [0m in [36m[35mfile[0m > [34mone[0m
+line [1;32m2   [0m in [36m[35mfile[0m > [34mtwo[0m
+line [1;32m3   [0m in [36m[35mfile[0m > [34mthree[0m
+line [1;32m1   [0m in [36m[35mlib[0m > [34mfour[0m
+line [1;32m2   [0m in [36m[35mlib[0m > [34mfive[0m
+line [1;32m3   [0m in [36m[35mlib[0m > [34msix[0m
+line [1;32m4   [0m in [36m[35mlib[0m > [34mseven[0m

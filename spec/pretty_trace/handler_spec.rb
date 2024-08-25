@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Handler do
   subject { described_class }
 
@@ -8,14 +6,14 @@ describe Handler do
     subject { 'bundle exec ruby spec/fixtures/hell_raiser.rb' }
 
     it 'catches all exceptions on exit' do
-      expect(`#{subject}`).to match(/\nline.*\[32m.*\[0m.*\[36mfixtures.*\[35mhell_raiser/)
+      expect(`#{subject}`).to match_approval('handler/enabled')
     end
 
     context 'when the backtrace is empty' do
       subject { 'bundle exec ruby spec/fixtures/filtered_hell_raiser.rb' }
 
       it 'only shows the error' do
-        expect(`#{subject}`).to eq "\n\e[34mRuntimeError\n\e[31mhell\e[0m\n"
+        expect(`#{subject}`).to match_approval('handler/empty-backtrace')
       end
     end
 
@@ -23,7 +21,7 @@ describe Handler do
       subject { 'bundle exec ruby spec/fixtures/tipper.rb' }
 
       it 'shows a friendly debug tip' do
-        expect(`#{subject}`).to match(/Run with .*PRETTY_TRACE=full.*for debug information/)
+        expect(`#{subject}`).to match_approval('handler/debug-tip')
       end
     end
   end
@@ -32,7 +30,7 @@ describe Handler do
     subject { 'bundle exec ruby spec/fixtures/disabled_hell_raiser.rb' }
 
     it 'raises exceptions normally' do
-      expect(`#{subject} 2>&1`).to eq "spec/fixtures/disabled_hell_raiser.rb:2:in `<main>': hell (RuntimeError)\n"
+      expect(`#{subject} 2>&1`).to match_approval('handler/disabled')
     end
 
     it 'exits with a non zero code' do
