@@ -1,3 +1,36 @@
 title   "PrettyTrace Developer Toolbelt"
 import_gem 'runfile-tasks/gem'
 import 'debug'
+
+action 'svg' do
+  take_screenshot 'enabled'
+end
+
+helpers do
+  def take_screenshot(file)
+    # ansiavg: https://github.com/wader/ansisvg
+    # themes: https://github.com/mbadolato/iTerm2-Color-Schemes
+    #
+    # Good themes
+    # theme = 'Alabaster'     # best light
+    # theme = 'Dark Pastel'   # best dark
+    # theme = 'Adventure'
+    # theme = 'Arthur'
+    # theme = 'Bright Lights'
+    font = 'JetBrains Mono'
+    theme = 'Alabaster'       # light
+
+    command = <<~COMMAND
+      bundle exec ruby support/screenshot/#{file}.rb 2>&1 | \
+        ansisvg \
+        --fontsize 20 \
+        --marginsize 2x1 \
+        --fontname "#{font}" \
+        --colorscheme "#{theme}" \
+        > support/screenshot/#{file}.svg
+    COMMAND
+
+    say "Saving g`support/screenshot/#{file}.svg`"
+    system command
+  end
+end

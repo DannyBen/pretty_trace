@@ -49,14 +49,13 @@ module PrettyTrace
         puts "\n#{backtrace}" unless backtrace.empty?
 
         message = exception.message
-        if message.empty?
-          puts "\n%{blue}#{exception.class}%{reset}\n" % colors
-        else
-          puts "\n%{blue}#{exception.class}\n%{red}#{message}%{reset}\n" % colors
+        puts "\n%{red}█ %{reset}%{bold}#{exception.class}%{reset}\n" % colors
+        unless message.empty?
+          puts "%{red}█ %{reset}%{yellow}#{message}%{reset}\n" % colors 
         end
 
         if debug_tip?
-          puts "\nTIP: Run with %{cyan}PRETTY_TRACE=full%{reset} (or %{cyan}off%{reset}) for debug information" % colors
+          puts "\nTip: Run with %{cyan}PRETTY_TRACE=full%{reset} (or %{cyan}off%{reset}) for debug information" % colors
         end
 
         $stdout.flush
