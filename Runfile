@@ -3,7 +3,7 @@ import_gem 'runfile-tasks/gem'
 import 'debug'
 
 action 'svg' do
-  take_screenshot 'enabled'
+  take_screenshot 'screenshot'
 end
 
 helpers do

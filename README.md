@@ -6,7 +6,7 @@
 [![Build Status](https://github.com/DannyBen/pretty_trace/workflows/Test/badge.svg)](https://github.com/DannyBen/pretty_trace/actions?query=workflow%3ATest)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9db6ec58ec7ac1484aa/maintainability)](https://codeclimate.com/github/DannyBen/pretty_trace/maintainability)
 
-![screenshot](support/screenshot/enabled.svg)
+![screenshot](support/screenshot/screenshot.png)
 
 </div>
 
