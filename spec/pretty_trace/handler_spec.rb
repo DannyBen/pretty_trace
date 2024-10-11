@@ -30,7 +30,8 @@ describe Handler do
     subject { 'bundle exec ruby spec/fixtures/disabled_hell_raiser.rb' }
 
     it 'raises exceptions normally' do
-      expect(`#{subject} 2>&1`).to match_approval('handler/disabled')
+      # allow 1 letter diff, since ruby 3.4 uses 'var' instead of `var'
+      expect(`#{subject} 2>&1`).to match_approval('handler/disabled').diff(1)
     end
 
     it 'exits with a non zero code' do
