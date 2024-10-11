@@ -8,7 +8,7 @@ module PrettyTrace
       @original_line = original_line
       @formatted = false
 
-      return unless @original_line =~ /(.+):(-?\d+):in `(.+)'/
+      return unless @original_line =~ /(.+):(-?\d+):in [`'](.+)'/
 
       @formatted = true
       @path = $1
