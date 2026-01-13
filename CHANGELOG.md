@@ -1,6 +1,13 @@
 Changelog
 ========================================
 
+v0.3.1 - 2026-01-13
+----------------------------------------
+
+- Update for Ruby 3.4 [`cc7d1ce`](https://github.com/DannyBen/pretty_trace/commit/cc7d1ce)
+- Compare [`v0.3.0..v0.3.1`](https://github.com/dannyben/pretty_trace/compare/v0.3.0..v0.3.1)
+
+
 v0.3.0 - 2024-08-25
 ----------------------------------------
 
