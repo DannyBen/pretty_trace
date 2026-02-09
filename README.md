@@ -2,6 +2,8 @@
 
 # Pretty Trace - Pretty Errors and Backtrace
 
+![repocard](https://repocard.dannyben.com/svg/pretty_trace.svg)
+
 ![screenshot](support/screenshot/screenshot.png)
 
 </div>
